@@ -1,0 +1,18 @@
+{
+  "name": "5.webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "_fsevents@1.2.7@fsevents": "^1.2.7",
+    "fsevents": "^1.2.7",
+    "webpack": "^4.29.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "webpack ./main.js ./build.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
