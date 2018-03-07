@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Prop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <div class="app">
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 全局注册组件开始  
+        // 大家的儿子 都可以用
+        Vue.component('all-my'
+        ,{
+            template: `
+               <button>全局按钮</button>
+            `,
+        })
+        // 全局注册组件结束
+       
+
+        var Son = {
+            template: `<div>
+               接受到父组件数据:{{ title }}
+               <all-my/>
+            </div>`,
+            props: ['title']
+        }
+
+        var App = {
+            components: {
+                'my-son': Son,
+            },
+            template: `<div>
+                <my-son :title='hell'></my-son> <all-my/>
+            </div>`,
+            data: function () {
+                return {
+                    hell: 'this hell'
+                }
+            }
+        }
+
+        new Vue({
+            el: '.app',
+            components: {
+                'my-app': App,
+            },
+            template: `<my-app/>`,
+        })
+    </script>
+</body>
+
+</html>

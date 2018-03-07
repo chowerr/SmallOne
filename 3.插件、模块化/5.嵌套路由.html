@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>嵌套路由</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <script src="../Vue-Project/node_modules/vue/dist/vue.js"></script>
+    <script src="../Vue-Project/node_modules/vue-router/dist/vue-router.js"></script>
+    <script>
+
+
+
+        var Login = {
+            template: ` <div>
+            登录页面
+            <router-link :to="{name:'login.woman'}">用女生登录</router-link>
+            <router-link :to="{name:'login.man'}">用男生登录</router-link>
+
+            <router-view></router-view>
+            </div>`,
+            created: function () {
+                console.log(this.$route.query)
+            }
+        }
+        var Register = {
+            template: ` <div>
+            注册页面
+            <router-view></router-view>
+            </div>`,
+            created: function () {
+                console.log(this.$route.params)
+            }
+        }
+        // router-view包含router-view
+        var Woman = {
+            template: ` <div>
+            欢迎女士
+            </div>`,
+            created: function () {
+                console.log(this.$route.query)
+            }
+        }
+        var Man = {
+            template: ` <div>
+            欢迎男士
+            </div>`,
+            created: function () {
+                console.log(this.$route.query)
+            }
+        }
+
+        ///安装插件 
+        Vue.use(VueRouter);
+
+
+        //创建路由对象
+        var router = new VueRouter({
+            routes: [
+                {
+                    name: 'login', path: '/login', component: Login,
+                    children: [
+                        {
+                            name: 'login.woman', path: 'woman', component: Woman
+                        },
+                        {
+                            name: 'login.man', path: 'man', component: Man
+                        }
+                        ,
+                        {
+                            name: 'login.man', path: '/man', component: Man//有/ 路径就不是/login/man而是/man
+                        }
+                    ]
+                },
+                {
+                    name: 'register', path: '/register/:name', component: Register
+
+                }
+            ]
+        })
+
+        // 通过name找到path ，比较常用
+        //  query params
+        var App = {
+            template: `<div> 
+            <router-link :to="{name:'login'}">登录</router-link>
+            <router-link :to="{name:'register',params:{name:'abc'}}">注册</router-link>
+                <router-view></router-view>
+            </div>
+            `
+        }
+
+
+        //将配置好的路由对象 关联到vue实例中
+        var vm = new Vue({
+            el: document.querySelector('#app'),
+            router: router,
+            components: {
+                app: App
+            },
+            template: '<app/>'
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>meta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <script src="../Vue-Project/node_modules/vue/dist/vue.js"></script>
+    <script src="../Vue-Project/node_modules/vue-router/dist/vue-router.js"></script>
+    <script>
+        var isLogin = false
+        // 前端路由比起后端路由，优点：无跳转，体验好
+
+        var Login = {
+            template: ` <div>
+            我是登录页面
+            </div>`,
+            created: function () {
+                isLogin = true
+            }
+        }
+        var MyMusic = {
+            template: ` <div>
+            我的音乐页面
+            </div>`
+        }
+
+
+        ///安装插件 //过程中会注册一些全局组件，及给vm或者组件对象挂在属性
+        Vue.use(VueRouter);
+
+
+        //创建路由对象
+        var router = new VueRouter({
+            routes: [
+                { name: 'login', path: '/login', component: Login },
+                {
+                    name: 'music', path: '/music', component: MyMusic, meta: {
+                        isChecked: true//给未来路由的权限控制，即 全局路由守卫 来做参照条件
+                    }
+                }
+            ]
+        })
+        //新增
+        router.addRoutes([
+            { path: '/', redirect: { name: 'login' } }
+        ])
+
+
+        //路由守卫
+        router.beforeEach((to, from, next) => {
+            if (!to.meta.isChecked) {
+                next()//放行
+            }
+            else {
+                //音乐页面 是否登录判断
+                if (isLogin === true) {
+                    next()
+                } else {
+                    alert('请先登录')
+                    next({ name: 'login' })
+                }
+            }
+        })
+
+        // 通过name找到path ，比较常用
+        // 全局组件<router-view><router-link>
+        var App = {
+            template: `<div>
+            <router-link :to="{name:'login'}"> 登录</router-link>
+            <router-link :to="{name:'music'}"> 去听歌</router-link>
+                <router-view></router-view>
+            </div>
+            `
+        }
+
+
+        //将配置好的路由对象 关联到vue实例中
+        var vm = new Vue({
+            el: document.querySelector('#app'),
+            router: router,
+            components: {
+                app: App
+            },
+            template: '<app/>'
+        })
+
+
+    </script>
+</body>
+
+</html>
