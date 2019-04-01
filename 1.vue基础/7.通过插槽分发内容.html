@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id='blog-post-demo'>
+        <alert-box>
+            Something bad happened.
+          </alert-box>
+    </div>
+
+    <script>
+   Vue.component('alert-box', {
+  template: `
+    <div class="demo-alert-box">
+      <strong>Error!</strong>
+      <slot></slot>
+    </div>
+  `
+})
+
+
+new Vue({
+  el: '#blog-post-demo',
+ 
+})
+    </script>
+</body>
+</html>

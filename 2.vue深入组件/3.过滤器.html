@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>过滤器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <div class="app">
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+
+
+        var App = {
+           
+            template: `<div>
+                <input type='text' v-model='myText'></input>
+                {{myText|reverse('111111')}}
+            </div>`,
+            data:function(){
+                return{myText:''};
+            },
+            filters: {
+                reverse:function(dataStr,dataReStr){
+                    return dataReStr+dataStr+'固定字符串';
+                },
+            },
+        }
+
+        //全局过滤器
+        Vue.filter('all-reverse',function(){
+
+        })
+
+        new Vue({
+            el: '.app',
+            components: {
+                'my-app': App,
+            },
+            template: `<my-app/>`,
+        })
+    </script>
+</body>
+
+</html>

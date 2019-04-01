@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SPA前端路由</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <a href="#/login">login</a>
+    <a href="#/register">register </a>
+    <div id="app">
+
+    </div>
+
+ 
+    <script>
+        var div=document.querySelector('#app')
+        console.log(div)
+        var div1=document.getElementById('app')
+        console.log(div1)
+            //获取url #xxx 锚点数据的改变事件
+            window.addEventListener('hashchange',function(){
+
+                console.log(location.hash)
+                switch(location.hash){
+                    case '#/login':
+                        div.innerHTML='<h1>登录界面</h1>';
+                        break;
+                    case "#/register":
+                        div.innerHTML='<h1>注册界面</h1>';
+                        break;
+                }
+            })
+     
+      
+    </script>
+</body>
+
+</html>

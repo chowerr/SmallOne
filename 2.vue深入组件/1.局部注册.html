@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>局部注册</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+</head>
+<body>
+    <div class="app">
+        <component-a></component-a>
+        <component-b></component-b>
+    </div>
+   
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    
+    var ComponentA = { template: `<p>我是第1个子组件</p>` }
+var ComponentB = {template: `<p>我是第二个子组件</p>`}
+var ComponentC = { template: `<p>我是第3个子组件</p>` }
+
+    var vm = new Vue({
+        el: '.app',
+        components: {
+    'component-a': ComponentA,
+    'component-b': ComponentB
+  }
+    });
+</script>
+</body>
+</html>

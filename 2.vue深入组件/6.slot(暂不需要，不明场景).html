@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>slot </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <div class="app">
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+
+        //入口组件： 实现九宫格
+        var App = {
+            template: `
+           <div>
+           <ul>
+           <li>1</li>
+           <li>2</li>
+           <li>3</li>
+           <li>4</li>
+           <li>5</li>
+           <li>6</li>
+           <li>7</li>
+           <li>8</li>
+           <li>9</li>
+           </ul>
+           
+           </div>
+           
+           
+           
+           `
+
+
+        }
+
+
+
+        new Vue({
+            el: '.app',
+            components: {
+                'my-app': App,
+            },
+            template: `<my-app/>`,
+        })
+    </script>
+</body>
+
+</html>
