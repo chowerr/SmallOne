@@ -1,10 +1,12 @@
 {
-  "name": "5.webpack",
+  "name": "01_profile",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dev": "webpack ./main.js ./build.js"
+    "dev": "webpack  --config ./webpack.dev.config.js",
+    "prod": "webpack  --config ./webpack.prod.config.js"
+
   },
   "keywords": [],
   "author": "",
