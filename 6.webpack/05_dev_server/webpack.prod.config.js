@@ -1,4 +1,5 @@
 const path = require('path')//相对路径 node环境
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     //入口
     entry: {
@@ -33,10 +34,10 @@ module.exports = {
 
         ]
     },
-
-
-
-    watch: true,//文件发生改动，自动生成build.js
-
+    plugins:[
+        new HtmlWebpackPlugin({
+            template:'./src/index.html',//参照物  快速移动
+        })
+    ]
 
 }
