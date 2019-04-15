@@ -16,14 +16,14 @@
         var arr = [1, 2, 3, 4];
         let sum=0;
         arr.forEach(function (value, index, array) {
-            array[index] == value;    //结果为true
+            array[index] === value;    //结果为true
             sum += value;
         });
         console.log('forEach' + sum);    //结果为 10
 
 
         arr.map(function (value, index, array) {
-            array[index] == value;    //结果为true
+            array[index] === value;    //结果为true
             sum += value;
         });
         console.log('map' + sum);    
@@ -32,7 +32,7 @@
 
         $.each(arr, function (index, value, array) {
 
-            array[index] == value;    //结果为true
+            array[index] === value;    //结果为true
             sum += value;
 
         })
