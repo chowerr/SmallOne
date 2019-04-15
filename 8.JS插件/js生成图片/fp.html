@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+    <title>邀请</title>
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="html2canvas.min.js"></script>
+</head>
+
+<body>
+    <canvas id='myCanvas' style="width: 425px; height: 920px;display:none" width="425" height="920" ></canvas>
+    <!--<input type="button" value="保存" style="margin-left: 10px;margin-top: 20px;" onclick="downloadimg()" />-->
+
+    <div class="box" style="width: 425px; height: 920px; "></div>
+
+        <script type="text/javascript">
+
+            
+
+
+            text = prompt("请输入您的昵称", "");
+
+            var fsz = 24;
+                var c = document.getElementById("myCanvas");
+                var cxt = c.getContext("2d");
+                var img = new Image();
+                img.src = 'fb.png';
+                img.onload = function () {//图片加载完成，才可处理
+                    cxt.drawImage(img, 0, 0, 425, 920, 0, 0, 425, 920);
+                    cxt.save();
+                    cxt.font = fsz + "px Arial";
+                    cxt.textBaseline = 'middle';//更改字号后，必须重置对齐方式，否则居中麻烦。设置文本的垂直对齐方式
+                    cxt.textAlign = 'center';
+                    var tw = cxt.measureText(text).width;
+                    var ftop = 235;
+                    var fleft = c.width / 2;
+                    cxt.fillStyle = "#18181C";
+                    cxt.fillRect(fleft - tw / 2, ftop - fsz / 2, tw, fsz);//矩形在画布居中方式
+                    cxt.fillStyle = "#ffffff";
+                    cxt.fillText(text, fleft, ftop);//文本元素在画布居中方式
+                    cxt.strokeStyle = '#fff';
+                    cxt.strokeText(text, fleft, ftop);//文字边框
+     
+
+
+
+
+
+                   
+                };
+
+            
+
+            window.onload = function () {
+                var img = convertCanvasToImage(c);
+                $('.box').html(img);
+                console.log(img);
+            }
+            function convertCanvasToImage(canvas) {
+                var image = new Image();
+                image.src = canvas.toDataURL("image/png");
+                return image;
+            }
+
+            //下载海报
+            function downloadimg() {
+                var img = $('.box').children('img').attr("src");
+                var alink = document.createElement("a");
+                alink.href = img;
+                alink.download = "fb.png";
+                alink.click();
+            }
+
+         
+
+        </script>
+    <!--<script>
+        //直接选择要截图的dom，就能截图，但是因为canvas的原因，生成的图片模糊
+        //html2canvas(document.querySelector('div')).then(function(canvas) {
+        //    document.body.appendChild(canvas);
+        //});
+        //创建一个新的canvas
+        var canvas2 = document.createElement("canvas");
+        let
+            _canvas = document.getElementById("myCanvas");
+        var w = parseInt(window.getComputedStyle(_canvas).width);
+        var h = parseInt(window.getComputedStyle(_canvas).height);
+        //将canvas画布放大若干倍，然后盛放在较小的容器内，就显得不模糊了
+        canvas2.width = w * 2;
+        canvas2.height = h * 2;
+        canvas2.style.width = w + "px";
+        canvas2.style.height = h + "px";
+        //可以按照自己的需求，对context的参数修改,translate指的是偏移量
+        //  var context = canvas.getContext("2d");
+        //  context.translate(0,0);
+        var context = canvas2.getContext("2d");
+        context.scale(2, 2);
+        html2canvas(document.getElementById("myCanvas"), { canvas: canvas2 }).then(function (canvas) {
+            //document.body.appendChild(canvas);
+            //canvas转换成url，然后利用a标签的download属性，直接下载，绕过上传服务器再下载
+            document.querySelector(".down").setAttribute('href', canvas.toDataURL());
+        });
+    </script>-->
+
+
+    
+
+</body>
+</html>
