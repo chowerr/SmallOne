@@ -29,6 +29,15 @@ module.exports = {
             },
             {
                 test:/\.less$/,loader:'style-loader!css-loader!less-loader'
+            },
+            //处理ES678
+            {
+                test:/\.js$/,loader:'babel-loader',
+                exclude:/node_modules/,//排除包含node_modules目录，不排除的话 里面有很多ES 代码 处理报错
+                options:{
+                    presets:['env'],//处理关键字
+                    plugins:['transform-runtime'],//处理函数
+                }
             }
 
 
