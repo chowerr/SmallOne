@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+var a = 1;
+// 如果在 Node 的 REPL 环境，可以写成 global.a
+// 或者采用通用方法，写成 this.a 
+console.log(window.a) // 1
+console.log(this.a)
+let b = 1;
+console.log(window.b) // undefined
+console.log(this.b) 
+
+let c = function xx(){
+    console.log(this.a)// 所有this 等同于顶层window
+}
+c()
+</script>
+
+</body>
+
+</html>

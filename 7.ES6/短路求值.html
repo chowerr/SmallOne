@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        function aa() {
+            if (null) { console.log('null') }
+            if (undefined) { console.log('undefined') }
+            if (false) { console.log('false') }
+            if (true) { console.log('true') }
+            if (NaN) { console.log('NaN') }
+            if ("") { console.log('""') }
+            if ("11") { console.log('11') }
+            if (1) { console.log('1') }
+        }
+        aa()
+
+
+
+
+// 逻辑与和逻辑或操作符总是先计算其做操作数，只有在仅靠左操作数的值无法确定该逻辑表达式的结果时，才会求解其右操作数。
+
+// 这被称为“短路求值（Short-Circuit Evaluation）”
+
+
+console.log(('123' || 'Fetching Data'))//123
+console.log((null|| 'Fetching Data'))//Fetching Data
+
+console.log((null&& 'Fetching Data'))//null 有错 返回第一个错 ； 都对 最后一个对
+console.log(('123'&& 'Fetching Data'))//Fetching Data
+
+
+// 快速Float转Integer
+console.log(23.9 | 0);  // Result: 23
+console.log(-23.9 | 0); // Result: -23
+console.log(1553 / 10   | 0)  // Result: 155
+
+
+console.log("I like %s but I do not like %s.", "Skittles", "pus");
+// 常见的占位符 %o (这是字母 o，不是 0)，它接受对象，%s 接受字符串，%d 表示小数或整数。
+// I like Skittles but I do not like pus.
+
+console.warn('高亮')
+
+const data = [
+    {
+        id: "7cb1-e041b126-f3b8",
+        seller: "WAL0412",
+        buyer: "WAL3023",
+        price: 203450,
+        time: 1539688433
+    },
+    {
+        id: "1d4c-31f8f14b-1571",
+        seller: "WAL0452",
+        buyer: "WAL3023",
+        price: 348299,
+        time: 1539688433
+    },
+    {
+        id: "b12c-b3adf58f-809f",
+        seller: "WAL0012",
+        buyer: "WAL2025",
+        price: 59240,
+        time: 1539688433
+    }
+];
+
+console.table(data)
+
+
+const slowFunction = number => {
+    console.log(number);
+};
+console.time();
+for (i = 0; i < 10; ++i) {
+    slowFunction(i);
+}
+console.timeEnd();
+
+
+    </script>
+</body>
+
+</html>
