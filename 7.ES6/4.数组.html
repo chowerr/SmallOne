@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // map         映射          一个对一个，进去几个出来几个
+        //   [12, 58, 99, 86, 45, 91]
+        //   [不及格, 不及格, 及格, 及格, 不及格, 及格]
+
+        //   [45, 57, 135, 28]
+        //   [
+        //     {name: 'blue', level: 0, role: 0},
+        //     {name: 'zhangsan', level: 99, role: 3},
+        //     {name: 'aaa', level: 0, role: 0},
+        //     {name: 'blue', level: 0, role: 0},
+        //   ]
+
+        let score = [45, 57, 135, 28];
+
+        let res = score.map(item => item >= 60 ? '及格' : '不及格')
+
+        console.log('score', res)
+
+        //  reduce(减少)             一堆出来一个
+        //     汇总 :
+        //   1.算个总数
+
+        let arr = [12, 69, 180, 8763];
+
+        let res2 = arr.reduce((tmp, item, index) =>
+            // tmp, 计算的临时数
+            // item, 当前数
+            // index  当前位置
+            tmp + item
+        );
+
+        console.log('plus', res2)
+
+
+        //   2.算个平均数
+        let res3 = arr.reduce((tmp, item, index) => {
+            if (index != arr.length - 1) {
+                return tmp + item
+            } else {
+                return (tmp + item) / arr.length
+            }
+        }
+        );
+        console.log('aver', res3)
+        // filter      过滤器
+        let res4 = arr.filter(item => item % 10 == 0
+
+        );
+        console.log('filter', res4) //[180]
+
+        let arr2 = [
+            { title: '男士衬衫', price: 75 },
+            { title: '女士包', price: 57842 },
+            { title: '男士包', price: 65 },
+            { title: '女士鞋', price: 27531 }
+        ];
+
+        let result4 = arr2.filter(item => item.price >= 10000);
+
+        console.log('filter2', result4);
+
+        // forEach     循环(迭代)
+
+
+
+        // forEach方法中的function回调有三个参数：第一个参数是遍历的数组内容，
+        //  第二个参数是对应的数组索引，第三个参数是数组本身
+
+        let sum = 0;
+        arr.forEach( (value, index, array) =>{
+            array[index] === value;    //结果为true
+            sum += value;
+        });
+        console.log('forEach' + sum);    
+
+
+        arr.map( (value, index, array)=> {
+            array[index] === value;    //结果为true
+            sum += value;
+        });
+        console.log('map' + sum);
+
+
+    </script>
+</body>
+
+</html>

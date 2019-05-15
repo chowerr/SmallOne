@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //参数扩展：
+
+        // 1.收集参数
+        //   function show(a, b, ...args){}
+        //   *Rest Parameter必须是最后一个
+        // 2.展开数组
+        //   ...arr    =>    1,2,3
+        //   *展开后的效果，跟直接把数组的内容写在这儿一样
+
+
+        let show = (...args) => {
+            console.log('...args', ...args)
+            return fn(...args)
+        }
+
+
+        let fn = (a, b) => a + b
+
+        console.log('show', show(12, 5));
+
+
+        // 默认参数:
+
+        let show2 = (a, b = 2, c = 3) => a + b + c
+        console.log('show2', show2(100))
+
+    </script>
+</body>
+
+</html>
