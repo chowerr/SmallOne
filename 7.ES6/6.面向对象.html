@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+
+        // ES6之前的js写法
+
+        function User(name, pass) {//又是类 又是函数 很愚蠢
+            this.name = name;
+            this.pass = pass;
+        }
+
+        User.prototype.showName = function () {
+            alert(this.name);
+        };
+        User.prototype.showPass = function () {
+            alert(this.pass);
+        };
+
+
+        function vipUser(name, pass, lever) {
+            User.call(this, name, pass);
+            this.lever = lever;
+        }
+
+        vipUser.prototype = new User();
+        vipUser.prototype.constructor = vipUser;
+        vipUser.prototype.showLever = function () {
+            alert(this.lever)
+        }
+
+        var u1 = new vipUser('blue', '123456', 3);
+
+        u1.showName();
+        u1.showPass();
+        // 新写法
+        class User2 {
+            constructor(name, pass) {
+                this.name = name;
+                this.pass = pass;
+
+            }
+            showName() {
+                alert(this.name);
+            }
+            showPass() {
+                alert(this.pass)
+            }
+        }
+        class vipUser2 extends User2 {
+            constructor(name, pass, lever) {
+                super(name, pass);
+                this.lever = lever;
+            }
+            showLever() {
+                alert(this.lever)
+            }
+        }
+        var u2 = new vipUser2('blue2', '222', 3);
+
+        u2.showName();
+        u2.showPass();
+
+
+
+        //    ES6的面向对象：
+        // 1.class关键字、构造器和类分开了
+        // 2.class里面直接加方法
+
+        // 继承：
+
+        // super-超类
+
+        // 超类==父类
+
+
+
+        // 面向对象应用——React
+
+        // React：
+        // 1.组件化——class
+        // 2.JSX
+
+        // JSX==babel==browser.js
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
